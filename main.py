@@ -56,8 +56,16 @@ def process_meta_file(file_name):
     new_funscript = template_json
     print(f'processing {file_name}\n')
     meta_file_obj = open(file_name,'r')
-    meta_data = json.load(meta_file_obj)
-    meta_file_obj.close()
+    try:
+        meta_data = json.load(meta_file_obj)
+        meta_file_obj.close()
+    except json.decoder.JSONDecodeError as jsondecodeerr:
+        print(f"""There was an error decoding a meta file. the following file has issues 
+    {file_name}
+    You may want to check the file for any issues with the json format, like newlines. there should be only one line.
+    Error: {jsondecodeerr}
+""")
+        quit()
     new_funscript['metadata']['description'] = meta_data['source']
     action_list = process_meta_position_data(meta_data['subs']['text'].replace("{", "").replace("}",""))
     new_funscript['actions'] = action_list
