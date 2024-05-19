@@ -1,5 +1,4 @@
 import os,json
-from pathlib import Path
 
 
 template_json = {"version":"1.0",
@@ -25,8 +24,8 @@ template_json = {"version":"1.0",
 
 def main():
     user_input = input('What directory do you have all your meta files in, please use full path: ')
-    # diff_directory = os.path.abspath(user_input)
-    meta_file_list = get_list_of_files()
+    diff_directory = os.path.abspath(user_input)
+    meta_file_list = get_list_of_files(diff_directory)
     process_meta_file(meta_file_list[0])
 
 def get_list_of_files(directory=os.getcwd()):
