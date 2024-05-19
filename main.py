@@ -26,6 +26,7 @@ def main():
     user_input = input('What directory do you have all your meta files in, please use full path: ')
     diff_directory = os.path.abspath(user_input)
     meta_file_list = get_list_of_files(diff_directory)
+    print(f"found {len(meta_file_list)} files to process... processing now")
     for item in meta_file_list:
         process_meta_file(item)
 
@@ -54,7 +55,7 @@ def process_meta_position_data(position_data):
 
 def process_meta_file(file_name):
     new_funscript = template_json
-    print(f'processing {file_name}\n')
+    # print(f'processing {file_name}\n')
     meta_file_obj = open(file_name,'r')
     try:
         meta_data = json.load(meta_file_obj)
