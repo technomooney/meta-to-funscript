@@ -54,6 +54,7 @@ def process_meta_position_data(position_data):
 
 def process_meta_file(file_name):
     new_funscript = template_json
+    print(f'processing {file_name}\n')
     meta_file_obj = open(file_name,'r')
     meta_data = json.load(meta_file_obj)
     meta_file_obj.close()
