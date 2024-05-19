@@ -26,7 +26,8 @@ def main():
     user_input = input('What directory do you have all your meta files in, please use full path: ')
     diff_directory = os.path.abspath(user_input)
     meta_file_list = get_list_of_files(diff_directory)
-    process_meta_file(meta_file_list[0])
+    for item in meta_file_list:
+        process_meta_file(item)
 
 def get_list_of_files(directory=os.getcwd()):
     abs_file_paths_list = []
@@ -47,7 +48,6 @@ def process_meta_position_data(position_data):
         item_list = item.split(':')
         temp_funscript_item_dict = {"pos":int(item_list[1])*25,"at":int(item_list[0]+"0")}
         funscript_action_list.append(temp_funscript_item_dict)
-        print(temp_funscript_item_dict)
     return funscript_action_list
     
 
